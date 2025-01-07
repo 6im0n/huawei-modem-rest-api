@@ -6,10 +6,23 @@ import { PrismaService } from './prisma/prisma.service';
 import { ApiKeyController } from './api-key/api-key.controller';
 import { FirebaseService } from './firebase/firebase.service';
 import { UsersController } from './firebase/users.controller';
+import { SmsService } from './sms/sms.service';
+import { SmsController } from './sms/sms.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController, ApiKeyController, UsersController],
-  providers: [AppService, ApiKeyService, PrismaService, FirebaseService],
+  controllers: [
+    AppController,
+    ApiKeyController,
+    UsersController,
+    SmsController,
+  ],
+  providers: [
+    AppService,
+    ApiKeyService,
+    PrismaService,
+    FirebaseService,
+    SmsService,
+  ],
 })
 export class AppModule {}

@@ -1,10 +1,13 @@
 import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly firebaseService: FirebaseService) {}
-
+  constructor(
+    private readonly firebaseService: FirebaseService,
+    private prismaService: PrismaService,
+  ) {}
   @Post('create')
   async createUser(
     @Body()
@@ -26,6 +29,15 @@ export class UsersController {
         password,
         displayName,
       );
+      await this.prismaService.user.create({
+        data: {
+          email: userRecord.email,
+          firebaseId: userRecord.uid,
+          name: userRecord.displayName,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      });
       return { message: 'User created successfully', user: userRecord };
     } catch (error) {
       throw new BadRequestException('error creating user: ' + error.message);
