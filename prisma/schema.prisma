@@ -8,12 +8,14 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model ApiKey {
-  id        String   @id @default(cuid())
-  key       String   @unique
-  userId    String
-  createdAt DateTime @default(now())
-  expiresAt DateTime
+model User {
+  id         String   @id @default(cuid())
+  firebaseId String   @unique
+  email      String   @unique
+  name       String
+  authorized Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 datasource db {
