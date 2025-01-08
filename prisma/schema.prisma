@@ -16,6 +16,7 @@ model User {
   authorized Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
 }
 
 datasource db {
