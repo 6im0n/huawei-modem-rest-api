@@ -5,6 +5,7 @@ This guide explains how to configure the network interfaces for the Huawei LTE m
 ## **Example Network Interface Configuration**
 
 Here is an example configuration file for the network interface:
+the file is located at `/etc/network/interfaces`:"
 
 ```bash
 # This file describes the network interfaces available on your system
